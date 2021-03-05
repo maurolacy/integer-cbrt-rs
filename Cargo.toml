@@ -2,7 +2,7 @@
 name = "integer-cbrt"
 description = """
 An implementation of integer cube root algorithm for primitive rust types"""
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Mauro Lacy <mauro@lacy.com.es>"]
 include = ["src/**/*.rs", "Cargo.toml"]
 repository = "https://github.com/maurolacy/integer-cbrt-rs"
