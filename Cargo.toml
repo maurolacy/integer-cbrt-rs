@@ -1,0 +1,15 @@
+[package]
+name = "integer-cbrt"
+description = """
+An implementation of integer cube root algorithm for primitive rust types"""
+version = "0.1.0"
+authors = ["Mauro Lacy <mauro@lacy.com.es>"]
+include = ["src/**/*.rs", "Cargo.toml"]
+repository = "https://github.com/maurolacy/integer-cbrt-rs"
+readme = "README.md"
+keywords = ["integer", "cube", "root", "icbrt", "cbrt"]
+categories = ["algorithms", "no-std"]
+license = "Apache-2.0/MIT"
+
+[dependencies]
+num-traits = { version = "0.2", default-features = false }
