@@ -54,9 +54,9 @@ impl<T: num_traits::PrimInt> IntegerCubeRoot for T {
         let one = T::one();
         let three = one + one + one;
 
-        let num_bits = T::zero().leading_zeros();
         let mut x = *self;
         let mut result = T::zero();
+        let num_bits = T::zero().leading_zeros() - x.leading_zeros();
         for s in (0..num_bits).step_by(3).rev() {
             result = result + result;
             let b = three * result * (result + one) + one;
