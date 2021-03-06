@@ -73,6 +73,7 @@ impl<T: num_traits::PrimInt> IntegerCubeRoot for T {
 mod tests {
     use super::IntegerCubeRoot;
     use core::{i8, u16, u64, u8};
+    // use std::println;
 
     macro_rules! gen_tests {
         ($($type:ty => $fn_name:ident),*) => {
@@ -149,7 +150,7 @@ mod tests {
 
     #[test]
     fn u128_test() {
-        let tests: [(u128, u128); 14] = [
+        let tests: [(u128, u128); 13] = [
             (0, 0),
             (1, 1),
             (2, 1),
@@ -157,16 +158,29 @@ mod tests {
             (4, 1),
             (64, 4),
             (63, 3),
+            (438975000000, 7599),
+            (438975999999, 7599),
+            (14348907000000, 24300),
             (23_985_346_875, 2_883),
-            (438_975_000_000, 7_599),
-            (438_976_000_000, 7_600),
-            (438_975_999_999, 7_599),
-            (14_348_907_000_000, 24_300),
             (24_958_973_498_745, 29_224),
             (u128::max_value(), 6_981_463_658_331),
         ];
         for &(in_, out) in tests.iter() {
             assert_eq!(in_.integer_cbrt(), out, "in {}", in_);
+        }
+    }
+
+    #[test]
+    fn u128_test_exhaustive() {
+        let epsilon = 0.000_000_000_01;
+        let delta = 1_000_000;
+        for in_ in (0..i128::MAX).step_by(delta) {
+            assert_eq!(
+                in_.integer_cbrt(),
+                ((in_ as f64).cbrt() + epsilon) as i128,
+                "in {}",
+                in_,
+            );
         }
     }
 }
